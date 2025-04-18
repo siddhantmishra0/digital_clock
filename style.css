@@ -1,0 +1,274 @@
+:root {
+  --primary-color: #6c5ce7;
+  --secondary-color: #45aaf2;
+  --danger-color: #e74c3c;
+  --success-color: #2ecc71;
+  --background-color: linear-gradient(135deg, #1a1a2e, #16213e);
+  --container-bg: rgba(0, 0, 0, 0.3);
+  --tab-bg: rgba(30, 30, 50, 0.5);
+  --active-tab-bg: rgba(60, 60, 80, 0.3);
+  --text-color: white;
+  --transition-speed: 0.3s;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--background-color);
+  color: var(--text-color);
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 500px;
+  background: var(--container-bg);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.tabs {
+  display: flex;
+  background: var(--tab-bg);
+}
+
+.tab {
+  flex: 1;
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition-speed);
+  border-bottom: 3px solid transparent;
+  user-select: none;
+}
+
+.tab:hover {
+  background: rgba(60, 60, 80, 0.2);
+}
+
+.tab.active {
+  background: var(--active-tab-bg);
+  border-bottom: 3px solid var(--primary-color);
+}
+
+.tab-content {
+  display: none;
+  padding: 30px;
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.time,
+.timer-display,
+.stopwatch-display {
+  font-size: 3.5rem;
+  font-weight: bold;
+  font-family: monospace;
+  text-align: center;
+}
+
+.date {
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: 10px;
+  opacity: 0.8;
+}
+
+.timer-controls,
+.stopwatch-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.timer-inputs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0 20px;
+}
+.input-group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
+    margin: 0 5px;
+}
+.time-values {
+    width: 100%;
+    height: 70px;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    color: var(--text-color);
+    background-color: rgba(40, 45, 60, 0.8);
+    border: 2px solid rgba(80, 90, 120, 0.5);
+    border-radius: 10px;
+    padding: 5px;
+    position: relative;
+    appearance: none;
+    -moz-appearance: textfield;
+}
+
+
+.time-values::-webkit-inner-spin-button,
+.time-values::-webkit-outer-spin-button {
+  opacity: 1;
+  height: 40px;
+}
+
+.time-values:focus {
+  outline: 2px solid var(--primary-color);
+}
+
+.time-label {
+  font-size: 0.8rem;
+  text-align: center;
+  opacity: 0.8;
+  margin-top: 5px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.collon {
+  margin: 0 5px;
+  font-weight: bold;
+  font-size: 1.75rem;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  border: none;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-start {
+  background: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  color: white;
+}
+
+.btn-pause {
+  background: linear-gradient(to right, #f39c12, #e67e22);
+  color: white;
+}
+
+.btn-reset {
+  background: var(--danger-color);
+  color: white;
+}
+
+.btn-lap {
+  background: var(--success-color);
+  color: white;
+}
+
+.progress-container {
+  height: 8px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 15px;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  transform-origin: left;
+  transition: transform 1s linear;
+}
+
+.timer-label {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.laps-container {
+  margin-top: 20px;
+  max-height: 200px;
+  overflow-y: auto;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  display: none;
+}
+
+.laps-container::-webkit-scrollbar {
+  width: 5px;
+}
+
+.laps-container::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 5px;
+}
+
+.lap-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.lap-item:last-child {
+  border-bottom: none;
+}
+
+.fastest {
+  color: var(--success-color);
+}
+
+.slowest {
+  color: var(--danger-color);
+}
